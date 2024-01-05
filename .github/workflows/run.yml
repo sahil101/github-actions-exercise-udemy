@@ -1,7 +1,14 @@
 name: Build Workflow
 on: push
 jobs:
+  clone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout
+        with: 
+          node-version: 18
   install:
+    needs: clone
     runs-on: ubuntu-latest
     steps:
       - name: install dependencies
