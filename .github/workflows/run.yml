@@ -1,0 +1,26 @@
+name: Build Workflow
+on: push
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install dependencies
+        run: npm install
+  linting:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: lint
+        run: npm run lint
+  testing:
+    needs: linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: npm run test
+  build:
+    needs: testing
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: npm run build
